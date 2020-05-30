@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>jvm调优 | Melon Kid`Blog</title>
+<meta name="generator" content="Jekyll v4.1.0" />
+<meta property="og:title" content="jvm调优" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="内存模型" />
+<meta property="og:description" content="内存模型" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2017/01/17/jvm.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2017/01/17/jvm.html" />
+<meta property="og:site_name" content="Melon Kid`Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-01-17T07:00:57+08:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/jekyll/update/2017/01/17/jvm.html","headline":"jvm调优","dateModified":"2017-01-17T07:00:57+08:00","datePublished":"2017-01-17T07:00:57+08:00","description":"内存模型","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2017/01/17/jvm.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Melon Kid`Blog" /></head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Melon Kid`Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/">blog</a><a class="page-link" href="/resume/">个人简介</a></div>
+      </nav></div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">jvm调优</h1>
+    <p class="post-meta"><time datetime="2017-01-17T07:00:57+08:00" itemprop="datePublished">Jan 17, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h3 id="内存模型">内存模型</h3>
+<p><img src="/assets/_images/14876337473845/14876338622934.jpg" alt="" /></p>
+
+<p>从上图可知，jvm堆内存分为年轻代和老年代两大部分；年轻代又可分为eden区，form区和to区。</p>
+
+<h3 id="垃圾回收机制">垃圾回收机制</h3>
+<ol>
+  <li>新对象new出来时，都在eden区。当eden区不够时，触发minor GC</li>
+  <li>minor GC释放eden区可以被释放的对象，并将不能释放的对象copy到to Survivor区，对象年龄增加。</li>
+  <li>minor GC释放from Survivor区中可被释放的对象，将不能被释放的对象放入to Survivor区。对象年龄增加。</li>
+  <li>将to Survivor区中年龄较大的对象copy到old区</li>
+  <li>如果to Survivor区空间不足，将多余对象copy到old区</li>
+  <li>old区不足，触发full GC</li>
+</ol>
+
+<h4 id="说明">说明：</h4>
+<p>Survivor区是对称的，from和to的角色不停互换，但是运行期间，保证一个Survivor是空的。</p>
+
+<h4 id="调优方案">调优方案</h4>
+<h5 id="选择合适的collector">选择合适的Collector</h5>
+<ol>
+  <li>Serial 串行收集器，单线程收集，运行期间会暂停程序
+<img src="_images/14876337473845/14876423736313.jpg" alt="" /></li>
+  <li>并行收集器，与串行比较，并行收集使用了多线程，运行期间也会暂停程序，但是效率较高
+<img src="_images/14876337473845/14876424541571.jpg" alt="" /></li>
+  <li>CMS(concurrent mark-sweep)程序运行期间有单独线程进行标记操作，执行GC的时候，多线程同时开始工作。因为在程序运行期间已经做好了标记处理，所以收集的时候就会更加迅速。效率更高
+<img src="_images/14876337473845/14876425879158.jpg" alt="" /></li>
+</ol>
+
+<p>可以看出，单线程收集器应该是效率最差的，多线程收集器比单线程会有更好的收集效果。
+CMS的好处是拥有最短的程序暂停时间，但是会损耗一定的程序运行效率，应该程序运行期间虚拟机需要一部分线程做对象标记操作。</p>
+
+<p>#####参数调优：
+-xms -xmx 最大堆内存，初始堆内存
+本地物理内存 = 堆内存(系统预留内存)+永久带内存(64m)+系统保留内存
+最大堆内存和初始堆内存最好一样，这样可以避免堆内存的自动扩展</p>
+
+<p>增大堆内存，可以减少full GC的发生频率，介绍minor GC的发生频率，增加系统的吞吐量。
+年轻代的大小关系到老年代的大小，老年代太小，容易产生full GC。所以，年轻代不易太大。</p>
+
+<p>参考文章：http://www.360doc.com/content/12/0113/08/1073512_179088229.shtml</p>
+
+
+  </div>
+
+  
+
+  <!-- PC版
+  <div id="SOHUCS" sid="/jekyll/update/2017/01/17/jvm"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'cyu2aUFvY',
+      conf: 'prod_f7f5185b724c35d7ffd06b0c2983fb9a'
+    });
+  </script> -->
+
+  <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="jvm调优" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyuRqVS32'; 
+var conf = 'prod_3eaca16fe219f5e8b648aa81dd878ba1'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://cy-cdn.kuaizhan.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://cy-cdn.kuaizhan.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Melon Kid`Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Melon Kid`Blog</li><li><a class="u-email" href="mailto:iworkvip@gmail.com">iworkvip@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/mel0nkid"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">mel0nkid</span></a></li><li><a href="https://www.twitter.com/melon+kid"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">melon kid</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>享受生活·欣赏美(Live&amp;Love)</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,93 @@
+I"4<h4 id="锁">锁</h4>
+<p>每一个java对象都有一个监视器，通过监视器，当有线程获进入到对象的特殊区域时，其他线程就不可以继续进入这个区域。其他线程会进入一个等待区，当特殊区域的线程消费完毕，等待线程中的某个线程可以进入特殊区域。</p>
+
+<p>一个简单的锁demo</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">//定义锁对象</span>
+<span class="kd">class</span> <span class="nc">Lock</span><span class="o">{</span>
+
+    <span class="c1">//是否锁定标识</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isLocked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">isLocked</span><span class="o">){</span>
+            <span class="c1">//调用lock的线程开始阻塞</span>
+            <span class="n">wait</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">isLocked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">(){</span>
+        <span class="n">isLocked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="c1">//将调用unlock方法的线程唤醒</span>
+        <span class="n">notify</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LockDemo</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Lock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Lock</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">inc</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">count</span><span class="o">++;</span>
+        <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="k">return</span>  <span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="nc">LockDemo</span> <span class="n">demo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LockDemo</span><span class="o">();</span>
+        <span class="n">demo</span><span class="o">.</span><span class="na">inc</span><span class="o">();</span>
+    <span class="o">}</span>
+
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>代码说明：
+当线程执行lock.lock();后，这个线程如果是第一个线程，那么可以继续执行，并标记isLocked=true。在第一个线程没有执行unlock之前，其他线程如果同样进入临界区，将会挂起(wait())。这些被挂起的线程进入等待队列。当第一个线程执行结束，调用了unlock()方法，等待队列中的一个线程被唤醒，开始执行临界区代码，后续执行与第一个线程类似。</p>
+
+<h4 id="重入锁">重入锁</h4>
+<p>同一个线程可以多次获取，之前获取到的锁。
+在上面的例子中，加一个判断逻辑，如果是当前线程，就放行，其他线程就继续阻塞</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * 重入锁
+ */</span>
+<span class="kd">class</span> <span class="nc">ReenLock</span><span class="o">{</span>
+
+    <span class="c1">//是否锁定标识</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isLocked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Thread</span> <span class="n">lockedThread</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">lock</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="nc">Thread</span> <span class="n">callingThread</span> <span class="o">=</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">();</span>
+        <span class="c1">//锁定非锁定线程的其他线程</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">isLocked</span><span class="o">&amp;&amp;</span><span class="n">lockedThread</span><span class="o">!=</span><span class="n">callingThread</span><span class="o">){</span>
+            <span class="c1">//调用lock的线程开始阻塞</span>
+            <span class="n">wait</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">lockedThread</span> <span class="o">=</span>  <span class="n">callingThread</span><span class="o">;</span>
+        <span class="n">isLocked</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">count</span><span class="o">++;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">unlock</span><span class="o">(){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">lockedThread</span><span class="o">==</span><span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">()){</span>
+            <span class="n">count</span><span class="o">--;</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">count</span><span class="o">==</span><span class="mi">0</span><span class="o">){</span>
+                <span class="n">isLocked</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="c1">//将调用unlock方法的线程唤醒</span>
+                <span class="n">notify</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+:ET

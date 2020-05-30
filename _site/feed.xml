@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-30T09:04:24+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Melon Kid`Blog</title><subtitle>享受生活·欣赏美(Live&amp;Love)</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2020/05/29/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2020-05-29T15:07:23+08:00</published><updated>2020-05-29T15:07:23+08:00</updated><id>http://localhost:4000/jekyll/update/2020/05/29/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/05/29/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">IO总结</title><link href="http://localhost:4000/jekyll/update/2019/03/12/IO.html" rel="alternate" type="text/html" title="IO总结" /><published>2019-03-12T06:36:57+08:00</published><updated>2019-03-12T06:36:57+08:00</updated><id>http://localhost:4000/jekyll/update/2019/03/12/IO</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/03/12/IO.html">&lt;h3 id=&quot;什么时ioio都有哪几种类型&quot;&gt;什么时IO，IO都有哪几种类型&lt;/h3&gt;
+&lt;p&gt;IO：IO(input and output).其实就是一次数据访问交互过程，客户端请求读取/写入数据的完整过程。
+一次IO一般要经历几个状态。1. 检查数据是否ready。2. 将已经ready的数据copy到用户空间。
+我们经常接触到几个IO概念，BIO, NIO, AIO。他们到底是什么？他们的使用场景是什么？
+IO的分类大体上可以从两大方面看 1. 是不是同步IO 2. 是不是阻塞IO
+同步阻塞IO 就是我们常说的BIO；同步非阻塞IO，就是我们说的NIO；多路复用IO其实也是一种阻塞IO；异步非阻塞IO。&lt;/p&gt;
+
+&lt;h4 id=&quot;bio&quot;&gt;BIO&lt;/h4&gt;
+
+&lt;p&gt;阻塞IO，就是当客户端发起一次IO请求后，客户进程/线程阻塞在IO操作，知道IO操作完全结束之前，客户线程不能做其他任何事情。&lt;/p&gt;
+
+&lt;h4 id=&quot;nio&quot;&gt;NIO&lt;/h4&gt;
+&lt;p&gt;非阻塞IO，客户端发起一次IO请求之后，系统内核不会block用户线程，如果内核数据没有ready，内核会直接return Err.用户线程如果发现返回结果是Err,那么就再次轮询查询，直到内核数据ready，用户线程等待内核将数据拷贝到用户空间。&lt;/p&gt;
+
+&lt;h4 id=&quot;多路复用io&quot;&gt;多路复用IO&lt;/h4&gt;
+&lt;p&gt;用户发起IO请求，在调用select()方法之后就被Block住。多个请求过来都会被阻塞到Select方法上面。Select不停地轮询注册到Select上面的内核数据是否ready。如果某个注册的IO事件OK了，select方法立刻返回，用户线程调用read方法将内核数据拷贝到用户空间。多路复用的一大好处是可以通过单一内核的select线程处理大量的请求操作。多个IO请求可以在一个用户线程里面被注册监听。这样可以达到使用少量用户线程处理大量IO请求的效果。&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Socket&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sockets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sockets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sockets&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;finish&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;canRead&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;异步io&quot;&gt;异步IO&lt;/h5&gt;
+&lt;p&gt;上面的IO操作其实都可以归为同步IO，因为大家都要等待。异步IO是完全不需要等待的IO。当用户请求过来之后，内核不会产生任何Block。当内核接收到请求之后会立刻返回，当内核数据Ready时，内核会将数据拷贝到用户空间。当这些工作全部OK时，内核通过信号告诉用户进程IO操作已经完成。&lt;/p&gt;
+
+&lt;h3 id=&quot;参考文章&quot;&gt;参考文章&lt;/h3&gt;
+&lt;p&gt;http://www.cnblogs.com/findumars/p/6361627.html
+https://www.cnblogs.com/welen/articles/5385837.html
+https://www.cnblogs.com/Anker/p/3269106.html&lt;/p&gt;</content><author><name></name></author><summary type="html">什么时IO，IO都有哪几种类型 IO：IO(input and output).其实就是一次数据访问交互过程，客户端请求读取/写入数据的完整过程。 一次IO一般要经历几个状态。1. 检查数据是否ready。2. 将已经ready的数据copy到用户空间。 我们经常接触到几个IO概念，BIO, NIO, AIO。他们到底是什么？他们的使用场景是什么？ IO的分类大体上可以从两大方面看 1. 是不是同步IO 2. 是不是阻塞IO 同步阻塞IO 就是我们常说的BIO；同步非阻塞IO，就是我们说的NIO；多路复用IO其实也是一种阻塞IO；异步非阻塞IO。</summary></entry><entry><title type="html">JAVA8-GroupingBy</title><link href="http://localhost:4000/%E5%9F%BA%E7%A1%80/2019/01/21/JAVA8Stream-GroupingBy.html" rel="alternate" type="text/html" title="JAVA8-GroupingBy" /><published>2019-01-21T11:18:00+08:00</published><updated>2019-01-21T11:18:00+08:00</updated><id>http://localhost:4000/%E5%9F%BA%E7%A1%80/2019/01/21/JAVA8Stream-GroupingBy</id><content type="html" xml:base="http://localhost:4000/%E5%9F%BA%E7%A1%80/2019/01/21/JAVA8Stream-GroupingBy.html">&lt;blockquote&gt;
+  &lt;p&gt;if we want to group a list with key. we can use new JAVA8 API-&amp;gt;groupyingBy。this api provides opretor which can group a list like SQL(select … form… where… group by)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;this new API has three overload metheds&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;one param
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// getter setter...&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+ &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;persons&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;// classify person by name&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;persons&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Collectors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;groupingBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;Person:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;two params
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
+      &lt;span class=&quot;c1&quot;&gt;// getter setter...&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+ &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;persons&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;// classify by sex(male &amp;amp; female) and caculate the count&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;// of sex&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;persons&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Collectors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;groupingBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;Person:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getSex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counting&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;three params
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
+      &lt;span class=&quot;c1&quot;&gt;// getter setter...&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+ &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;persons&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;// classify by sex(male &amp;amp; female) and caculate the count&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;// of sex&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;persons&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Collectors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;groupingBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;Person:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getSex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counting&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">if we want to group a list with key. we can use new JAVA8 API-&amp;gt;groupyingBy。this api provides opretor which can group a list like SQL(select … form… where… group by)</summary></entry><entry><title type="html">批量轨迹存储压缩算法</title><link href="http://localhost:4000/%E7%AE%97%E6%B3%95/2019/01/18/%E8%BD%A8%E8%BF%B9%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95.html" rel="alternate" type="text/html" title="批量轨迹存储压缩算法" /><published>2019-01-18T18:18:00+08:00</published><updated>2019-01-18T18:18:00+08:00</updated><id>http://localhost:4000/%E7%AE%97%E6%B3%95/2019/01/18/%E8%BD%A8%E8%BF%B9%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95</id><content type="html" xml:base="http://localhost:4000/%E7%AE%97%E6%B3%95/2019/01/18/%E8%BD%A8%E8%BF%B9%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95.html">&lt;h3 id=&quot;业务背景&quot;&gt;业务背景&lt;/h3&gt;
+&lt;p&gt;   如果我们在某些场景中，需要存储和查询批量轨迹点(查询历史轨迹)。比如，一个小件员过去几天的经纬度坐标数据。如果app采集小件员轨迹的频率是1个/1秒。那么一天如果工作8小时，一天一个小件员的轨迹量是8&lt;em&gt;60&lt;/em&gt;60 = 28800个轨迹点。我们通常的做法是将小件员的实时位置信息采集存储到Hbase。那么如果有客户一次查询3天的轨迹数据，那么Hbase内部查询+HBASE到本服务的网络IO+本服务(不做任何操作直接范围)到客户端的网络IO会是一个比较大的RT。目前测试，使用阿里内部的HBASE一次查询3W+的轨迹点耗时&amp;gt;1s。这对某些业务是不能忍受的。所以我们必须采取其他办法对这些轨迹点进行压缩。&lt;/p&gt;
+
+&lt;h3 id=&quot;目前采取的轨迹存储&quot;&gt;目前采取的轨迹存储&lt;/h3&gt;
+&lt;p&gt;存储DB：HBASE&lt;br /&gt;
+RK: userId_timestamp&lt;br /&gt;
+val: f:lon, f:lat
+这种方式的存储，如果需要查询某个用户一段时间的轨迹序列，只需:&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;startRk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId_startQueryTimestamp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;endRk&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId_endQueryTimestamp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;hbase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;scan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;startRk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endRk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;如上面伪代码所示，如果查询结果轨迹点较少，其实是没问题的。但是当如果在给定查询时间区间内有很多的轨迹点。这种查询就会出现上面描述的问题。&lt;/p&gt;
+
+&lt;h3 id=&quot;存储压缩算法&quot;&gt;存储压缩算法&lt;/h3&gt;
+&lt;p&gt;思路：我们能不能把一个人的散列轨迹数据拟合成一段轨迹记录。比如，小件员一天的轨迹散列，我们通过离线任务将其拟合成一条完整的轨迹记录。按天轨迹的查询Hbase的压力转移到了单条轨迹记录的查询压力。如果单条轨迹某一列数据较大同样会产生性能问题。那么我们接下来想办法压缩这单条数据就OK了。&lt;/p&gt;
+
+&lt;h4 id=&quot;10进位转高进位算法压缩&quot;&gt;10进位转高进位算法压缩&lt;/h4&gt;
+&lt;p&gt;假如我们用一下方式存储一个用户一段时间的完整轨迹数据&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lon1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lat1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lon2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lat2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;..........&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lonN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;latN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;那么，如果我们按照经纬度原始字符串存储，那么当轨迹点较多时会是一个比较大的存储压力。这时，我们可以使用经纬度转高经纬度的方案采取压缩。具体实施如下：&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c1&quot;&gt;//1. 将经纬度转为整数&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lonLatNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lonLat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;StringBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;Stack&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 2. 循环编码&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radix&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getChar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这样经过几次转换，10位的经纬度字符串就压缩为3，4位的字符串了。这种压缩方式的压缩比例经测试大概是72%左右&lt;/p&gt;
+
+&lt;h4 id=&quot;差值压缩&quot;&gt;差值压缩&lt;/h4&gt;
+&lt;p&gt;这种压缩思路是，我们只记录轨迹序列第一个轨迹点的精确值，后面的经纬度信息只保留与第一个经纬度之间的差值&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nc&quot;&gt;StringBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;';'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]-&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])....&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Lon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这种压缩算法在经纬度精度越大的时候效果越明显。经测试，当经纬度为6位小数位精度时，压缩比可以到达75%。而且在[100 - &amp;amp;)的区间里，压缩比非常稳定。&lt;/p&gt;</content><author><name></name></author><summary type="html">业务背景    如果我们在某些场景中，需要存储和查询批量轨迹点(查询历史轨迹)。比如，一个小件员过去几天的经纬度坐标数据。如果app采集小件员轨迹的频率是1个/1秒。那么一天如果工作8小时，一天一个小件员的轨迹量是86060 = 28800个轨迹点。我们通常的做法是将小件员的实时位置信息采集存储到Hbase。那么如果有客户一次查询3天的轨迹数据，那么Hbase内部查询+HBASE到本服务的网络IO+本服务(不做任何操作直接范围)到客户端的网络IO会是一个比较大的RT。目前测试，使用阿里内部的HBASE一次查询3W+的轨迹点耗时&amp;gt;1s。这对某些业务是不能忍受的。所以我们必须采取其他办法对这些轨迹点进行压缩。</summary></entry><entry><title type="html">轨迹点范围召回</title><link href="http://localhost:4000/jekyll/update/2019/01/15/rangesearch.html" rel="alternate" type="text/html" title="轨迹点范围召回" /><published>2019-01-15T08:00:57+08:00</published><updated>2019-01-15T08:00:57+08:00</updated><id>http://localhost:4000/jekyll/update/2019/01/15/rangesearch</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/01/15/rangesearch.html">&lt;h3 id=&quot;实际场景&quot;&gt;实际场景&lt;/h3&gt;
+&lt;p&gt;假如我们开发了一款APP，用户数量很大，APP定时会采集上报海量的轨迹点。这时，如果我们需要查询给定经纬度POI指定范围的用户信息列表。这就可以用到本文的范围查找了。&lt;/p&gt;
+
+&lt;h3 id=&quot;技术难点&quot;&gt;技术难点&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 轨迹点是海量数据
+2. 用户的轨迹点实时更新
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;解决方案&quot;&gt;解决方案&lt;/h3&gt;
+&lt;h4 id=&quot;方案一&quot;&gt;方案一：&lt;/h4&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 使用geohash算法将地球切分为若干块(当然，对于国内大部分APP场景来说，只对中国进行切分就可以了，这样可以减少切割出来HASH块的数量)
+2. 我们在内存(或者第三方内存存储引擎)中维护一个以geohash为KEY，用户轨迹点信息列表为VAL的的数据结构。
+3. 当查询过来时，我们首先使用查询经纬度和查询半径构建一个查询矩形。判断这个查询矩形与geohash块的空间关系。获取到所有与查询矩形存在相交关系的所有geohash列表。
+4. 从内存缓存列表中查询最新的用户轨迹列表，对于被查询区域完全覆盖的geohash块，返回所有的用户列表，对于局部覆盖(相交)的区域，要进行点点距离过滤。只将那些满足条件的用户点数据范围即可。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;例如： 查询我附近1km内的微信好友(这里只是举例，微信LBS的具体实现与本文无关)。那么首先判断以我为中心，1km的圆与那些geohash相交。当然了，为了方便判断，我们往往选择圆或者多边形的最小外包矩形作为查询区域。如果被查询区域覆盖的geohash有wk3a, wk3b,与查询区域相交的区域为wk3c, wk3d。这时&lt;/p&gt;
+  &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wk3a: 张三(lon1, lat1)  李四(lon2, lat2)
+wk3b：王五(lon3, lat3)
+wk3c：赵六(lon4, lat4)
+wk3d：王麻子(lon5, lat5)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+  &lt;p&gt;那么，根据上面的算法逻辑，我们首先全部返回wk3a, wk3b中的用户，张三，李四，王五。之后呢，我们会分别判断赵六，王麻子与查询轨迹的距离是否超出1km。入股赵六具我1.2km, 王麻子据我0.9km。那么最后的返回结果是：张三，李四，王五，王麻子。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;上面计算方案的挑战&quot;&gt;上面计算方案的挑战&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;用户位置实时更新，这一刻用户在geohashA,下一刻就可能在geohashB了。所以，这时，就需要我们把用户在geohashA的数据删除，在geohashB中加入。说白了，我们需要维护用户的实时位置。&lt;/li&gt;
+  &lt;li&gt;geohash级别的选择。对于5级编码，误差应该在1km左右，4级误差应该是20km左右。中间存在比较大的跨度，这时，就需要考虑到底怎么切分了。切分小了，一次查询就可能覆盖和相交更多的geohash块，这样会增加用户位置是否满足条件的计算量。切分大了，一个hash块内就可能存入了大量的数据。比如像微信这种高频C段APP，20KM内可能有非常多的用户。一个块存这么多数据，尤其是当这些数据存储在第三方引擎的时候，一次的网络交互IO式一个非常大的挑战。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;方案二&quot;&gt;方案二：&lt;/h4&gt;
+&lt;p&gt;思路方案一类似，主要是改变的地图编码的实现方式。方案一使用geohash算法，正如上面提到的，geohash不同编码登记存在很大的范围落差。比如5级编码范围是1km，4级编码就是20km了。中间存在很大的落差。所以，我们需要实现更精细力度的切分。目前我采用了1km网格的切分规则。具体的实施方案是，从中国最西北角开始切分，向东，向南每一公里切除一个小格子。通过这种方式实现了对网格大小的控制，实现对方案1的优化&lt;/p&gt;</content><author><name></name></author><summary type="html">实际场景 假如我们开发了一款APP，用户数量很大，APP定时会采集上报海量的轨迹点。这时，如果我们需要查询给定经纬度POI指定范围的用户信息列表。这就可以用到本文的范围查找了。</summary></entry><entry><title type="html">锁·可重入锁</title><link href="http://localhost:4000/jekyll/update/2017/03/01/lock_reentrant.html" rel="alternate" type="text/html" title="锁·可重入锁" /><published>2017-03-01T08:00:57+08:00</published><updated>2017-03-01T08:00:57+08:00</updated><id>http://localhost:4000/jekyll/update/2017/03/01/lock_reentrant</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/03/01/lock_reentrant.html">&lt;h4 id=&quot;锁&quot;&gt;锁&lt;/h4&gt;
+&lt;p&gt;每一个java对象都有一个监视器，通过监视器，当有线程获进入到对象的特殊区域时，其他线程就不可以继续进入这个区域。其他线程会进入一个等待区，当特殊区域的线程消费完毕，等待线程中的某个线程可以进入特殊区域。&lt;/p&gt;
+
+&lt;p&gt;一个简单的锁demo&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c1&quot;&gt;//定义锁对象&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Lock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//是否锁定标识&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;//调用lock的线程开始阻塞&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unlock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//将调用unlock方法的线程唤醒&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LockDemo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Lock&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Lock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unlock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;LockDemo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;demo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LockDemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;demo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;代码说明：
+当线程执行lock.lock();后，这个线程如果是第一个线程，那么可以继续执行，并标记isLocked=true。在第一个线程没有执行unlock之前，其他线程如果同样进入临界区，将会挂起(wait())。这些被挂起的线程进入等待队列。当第一个线程执行结束，调用了unlock()方法，等待队列中的一个线程被唤醒，开始执行临界区代码，后续执行与第一个线程类似。&lt;/p&gt;
+
+&lt;h4 id=&quot;重入锁&quot;&gt;重入锁&lt;/h4&gt;
+&lt;p&gt;同一个线程可以多次获取，之前获取到的锁。
+在上面的例子中，加一个判断逻辑，如果是当前线程，就放行，其他线程就继续阻塞&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/**
+ * 重入锁
+ */&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ReenLock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//是否锁定标识&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lockedThread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;callingThread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//锁定非锁定线程的其他线程&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lockedThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;callingThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;//调用lock的线程开始阻塞&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lockedThread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;callingThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unlock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lockedThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;isLocked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;//将调用unlock方法的线程唤醒&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">锁 每一个java对象都有一个监视器，通过监视器，当有线程获进入到对象的特殊区域时，其他线程就不可以继续进入这个区域。其他线程会进入一个等待区，当特殊区域的线程消费完毕，等待线程中的某个线程可以进入特殊区域。</summary></entry><entry><title type="html">分布式事务</title><link href="http://localhost:4000/jekyll/update/2017/02/21/shiwu.html" rel="alternate" type="text/html" title="分布式事务" /><published>2017-02-21T21:46:57+08:00</published><updated>2017-02-21T21:46:57+08:00</updated><id>http://localhost:4000/jekyll/update/2017/02/21/shiwu</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/21/shiwu.html">&lt;h3 id=&quot;应用场景&quot;&gt;应用场景&lt;/h3&gt;
+&lt;p&gt;随着业务的增长，单个数据库已经无法完成业务需求。需要对业务进行拆分。不同的业务逻辑可能操作不同的数据库。这时，系统中的某些操作与其他操作有依赖关系。为了保证数据操作的业务完整性，我们要求某些操作与其关联系统要么全部操作成功，要么全部操作失败。这就要求我们要在整个系统层面实现事务控制。&lt;/p&gt;
+
+&lt;h3 id=&quot;分布式事务的常用解决方案&quot;&gt;分布式事务的常用解决方案&lt;/h3&gt;
+
+&lt;h4 id=&quot;二阶段提交算法&quot;&gt;二阶段提交算法&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在分布式系统中，虽然单独节点可以知道自己节点操作的成败，但是不能知道其他节点的成败状况。为了解决这个问题，二阶段提交算法在分布式系统中引入了一个中间协调者。分布式系统各节点与中间协调者通信，中间协调者感知各节点的操作状态，然后根据汇总结果协调其他节点的成败。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;二阶段提交算法分为两个阶段，准备阶段，提交阶段&lt;/p&gt;
+
+&lt;h5 id=&quot;准备阶段操作过程为&quot;&gt;准备阶段操作过程为：&lt;/h5&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;协调者向每一个参与节点发起事务询问，等待各个节点响应。&lt;/li&gt;
+    &lt;li&gt;参与节点执行事务，不提交事务&lt;/li&gt;
+    &lt;li&gt;并将执行结果反馈给协调者&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;提交阶段过程为&quot;&gt;提交阶段过程为：&lt;/h5&gt;
+&lt;p&gt;对于准备阶段，一般情况会出现三种情况&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;所有节点全部正常执行了事务&lt;/li&gt;
+    &lt;li&gt;一个或者多个节点执行事务出现异常&lt;/li&gt;
+    &lt;li&gt;协调者等待节点响应超时&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;针对第一种情况，协调者会对所有参与节点发出commit请求，具体步骤如下：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;协调者分别向参与节点发出commit请求&lt;/li&gt;
+    &lt;li&gt;参与者执行commit,并释放事务资源&lt;/li&gt;
+    &lt;li&gt;参与者向协调者返回事务执行结果&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;针对二三情况，协调者会向所有参与节点发出rollback请求，具体操作如下：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;协调者分别向参与者发出rollback请求&lt;/li&gt;
+    &lt;li&gt;参与者执行回滚，释放资源&lt;/li&gt;
+    &lt;li&gt;参与者将回滚结果反馈给协调者&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;主要缺点&quot;&gt;主要缺点&lt;/h5&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;单点故障，在整个体系中，协调者处于比较核心的位置。在运行过程中，如果协调者出现了故障，将导致整个系统不可用。如果在提交阶段，协调者不能正常收发消息，那么整个系统中的参与者将处于阻塞状态。&lt;/li&gt;
+    &lt;li&gt;效率问题，在系统事务同步的过程中，整个系统参与者都处于阻塞阶段。不能参与其他操作，这样会影响到系统的效率。&lt;/li&gt;
+    &lt;li&gt;数据不一致问题，在提交阶段，如果协调者出现故障，使得一部分参与者接收到commit,另一部分接受者没有接收到commit。将导致参与节点的数据出现不一致问题。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;三阶段提交算法&quot;&gt;三阶段提交算法&lt;/h3&gt;
+&lt;p&gt;与二阶段提交算法相比，三阶段主要增加了与询问阶段，增加系统的可用性。
+三阶段提交共分can-commit,pre-commit,do-commit&lt;/p&gt;
+
+&lt;h3 id=&quot;状态机方案&quot;&gt;状态机方案：&lt;/h3&gt;
+&lt;p&gt;假如有若干个服务顺序执行，并且每个服务都提供配套的回滚服务；后续服务如果执行失败，回调前续服务的回滚服务。对于超时情况，这个比较复杂，因为链接超时可能有两种情况&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;前置服务发送消息时出现超时，这种情况后续服务没有执行操作。&lt;/li&gt;
+  &lt;li&gt;前置服务已经成功发送消息，并且后续服务也执行了请求。只是后续服务在返回时出现超时。这种情况下，后续服务其实已经执行了操作。
+为了解决这个问题，我们可以在后续服务中增加一些操作记录表，一旦后续服务执行了前置服务的请求，更新记录数据。这样如果出现请求超时，可以通过后续服务进行查询确认后续服务是否已经执行了请求操作。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;主要缺点-1&quot;&gt;主要缺点&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;请求链中，如果出现了crash，已经宕机的服务不能自己恢复。&lt;/li&gt;
+  &lt;li&gt;这个方案要求前置设计提供回滚接口，一是增加开发量，二是不可能要求每一个服务开发者都能提供回滚接口。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;消息驱动的一致性方案&quot;&gt;消息驱动的一致性方案&lt;/h3&gt;
+
+&lt;h4 id=&quot;方案1-消息数据与前置服务业务数据保存在一个数据库中&quot;&gt;方案1 消息数据与前置服务业务数据保存在一个数据库中&lt;/h4&gt;
+&lt;p&gt;假如有若干服务进行顺序执行，在执行前置服务成功后，将消息以异步的方式写入消息数据表中。后置服务可以轮询查询消息更新状态，发现有新消息，则进行后续消息业务逻辑。如果消费失败，后续业务满足幂等，可以进行重试。增设后续服务操作记录日志，可以不要求后续服务幂等。假设有两个服务A,B&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#服务A：&lt;/span&gt;
+Begin tx&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+服务A DML
+push message  //将消息数据保存到数据库
+Commit/Rollback&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#服务B:&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;eash message &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;queue begin &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;trx: 服务B DML； commit/rollback&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; if trx.success: pop message&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; end &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;； end &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;优点&quot;&gt;优点&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;能满足业务一致性，性能较好&lt;/li&gt;
+  &lt;li&gt;将消息数据与业务数据保存到一个数据库中的好处是，插入消息和业务DML可以很方便的实现原子性&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;主要缺点-2&quot;&gt;主要缺点&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;消息跟业务共用数据库资源。使得对业务进行拆分变得困难。&lt;/li&gt;
+  &lt;li&gt;系统没有隔离性，消息一旦产生就必须被消费，如果消息无法消费，需要人工介入。系统维护成本较高。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;方案2将消息数据与业务数据解耦分库&quot;&gt;方案2：将消息数据与业务数据解耦，分库&lt;/h4&gt;
+&lt;p&gt;执行前置业务前先记录操作消息数据，这时可以标识消息数据的状态为不可消费。当前置业务操作完毕，业务消息将消息置为可消费状态。假设有两个服务A,B&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#服务A：&lt;/span&gt;
+push haf message //将消息数据保存到数据库
+Begin tx&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+服务A DML
+Commit/Rollback&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+If tx.success Commit half message&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;        //将消息置为有效 保证消息与业务数据的原子性 End &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#服务B:&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;eash message &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;queue begin &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;trx: 服务B DML； commit/rollback&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; if trx.success: pop message&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; end &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;； end &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;优点-1&quot;&gt;优点&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;能满足业务一致性，性能较好&lt;/li&gt;
+  &lt;li&gt;消息与业务数据分开存储，实现消息业务的解耦。方便业务分层扩展。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;主要缺点-3&quot;&gt;主要缺点&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;一次操作，要将消息发送两次，一次插入消息，一次更新消息状态；增加了系统的运行成本。&lt;/li&gt;
+  &lt;li&gt;系统没有隔离性，消息一旦产生就必须被消费，如果消息无法消费，需要人工介入。系统维护成本较高。&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">应用场景 随着业务的增长，单个数据库已经无法完成业务需求。需要对业务进行拆分。不同的业务逻辑可能操作不同的数据库。这时，系统中的某些操作与其他操作有依赖关系。为了保证数据操作的业务完整性，我们要求某些操作与其关联系统要么全部操作成功，要么全部操作失败。这就要求我们要在整个系统层面实现事务控制。</summary></entry><entry><title type="html">使用github+jeklly搭建博客过程记录</title><link href="http://localhost:4000/jekyll/update/2017/02/16/jekl-build.html" rel="alternate" type="text/html" title="使用github+jeklly搭建博客过程记录" /><published>2017-02-16T17:29:57+08:00</published><updated>2017-02-16T17:29:57+08:00</updated><id>http://localhost:4000/jekyll/update/2017/02/16/jekl-build</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/02/16/jekl-build.html">&lt;p&gt;##准备工作&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;申请git账号，新建一个git仓库，仓库的名称命名格式为：
+账号名称.github.io
+比如，我的账号是xinyuan6009，那么我的仓库名称为：
+xinyuan6009.github.io&lt;/li&gt;
+  &lt;li&gt;本地安装jekll,安装教程请大家自行搜索。安装好jekll后，执行
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; jekll blog
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;就会生成jekll-base的博客工程结构&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;将生成的blog项目上传到仓库中，访问xinyuan6009.github.io就能看到自己的网站了。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;自定义主题&quot;&gt;自定义主题&lt;/h2&gt;
+&lt;p&gt;刚刚新建的博客项目使用的是jekll默认的主题风格，菜单只有about.我们现在要修改网站标题和菜单项。这时我们就要修改一个比较重要的文件_conf.yml&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;打开系统默认主题的目录：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;open &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;bundle show minima&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol&gt;
+  &lt;li&gt;参考官方文档拷贝修改配置文件
+    &lt;blockquote&gt;
+      &lt;p&gt;Suppose you want to get rid of the gem-based theme and convert it to a regular theme, where all files are present in your Jekyll site directory, with nothing stored in the theme gem.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;To do this, copy the files from the theme gem’s directory into your Jekyll site directory. (For example, copy them to /myblog if you created your Jekyll site at /myblog. See the previous section for details.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Then remove references to the theme gem in Gemfile and configuration. For example, to remove minima:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Open Gemfile and remove gem “minima”, “~&amp;gt; 2.0”.
+Open _config.yml and remove theme: minima.
+Now bundle update will no longer get updates for the theme gem.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;修改_config.yml文件(如添加了自定义导航)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#theme: minima&lt;/span&gt;
+gems:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
+nav:
+  - text: blog
+    url: /index.html
+  - text: resume
+    url: /resume/index.html
+  - text: contact
+    url: /contact/index.html
+  - text: about
+    url: /about/index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol&gt;
+  &lt;li&gt;在项目根目录添加自定义导航菜单对应的配置模板.md 参考系统默认模板about.md,其他菜单的根据需要自行修改&lt;/li&gt;
+  &lt;li&gt;修改布局文件中导航菜单的部分逻辑，默认主题的导航文件在_incloud/header.html
+根据我上面的配置，我的布局模板修改如下：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;trigger&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">##准备工作 申请git账号，新建一个git仓库，仓库的名称命名格式为： 账号名称.github.io 比如，我的账号是xinyuan6009，那么我的仓库名称为： xinyuan6009.github.io 本地安装jekll,安装教程请大家自行搜索。安装好jekll后，执行 jekll blog 就会生成jekll-base的博客工程结构 将生成的blog项目上传到仓库中，访问xinyuan6009.github.io就能看到自己的网站了。</summary></entry><entry><title type="html">jvm调优</title><link href="http://localhost:4000/jekyll/update/2017/01/17/jvm.html" rel="alternate" type="text/html" title="jvm调优" /><published>2017-01-17T07:00:57+08:00</published><updated>2017-01-17T07:00:57+08:00</updated><id>http://localhost:4000/jekyll/update/2017/01/17/jvm</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/01/17/jvm.html">&lt;h3 id=&quot;内存模型&quot;&gt;内存模型&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/_images/14876337473845/14876338622934.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从上图可知，jvm堆内存分为年轻代和老年代两大部分；年轻代又可分为eden区，form区和to区。&lt;/p&gt;
+
+&lt;h3 id=&quot;垃圾回收机制&quot;&gt;垃圾回收机制&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;新对象new出来时，都在eden区。当eden区不够时，触发minor GC&lt;/li&gt;
+  &lt;li&gt;minor GC释放eden区可以被释放的对象，并将不能释放的对象copy到to Survivor区，对象年龄增加。&lt;/li&gt;
+  &lt;li&gt;minor GC释放from Survivor区中可被释放的对象，将不能被释放的对象放入to Survivor区。对象年龄增加。&lt;/li&gt;
+  &lt;li&gt;将to Survivor区中年龄较大的对象copy到old区&lt;/li&gt;
+  &lt;li&gt;如果to Survivor区空间不足，将多余对象copy到old区&lt;/li&gt;
+  &lt;li&gt;old区不足，触发full GC&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;说明&quot;&gt;说明：&lt;/h4&gt;
+&lt;p&gt;Survivor区是对称的，from和to的角色不停互换，但是运行期间，保证一个Survivor是空的。&lt;/p&gt;
+
+&lt;h4 id=&quot;调优方案&quot;&gt;调优方案&lt;/h4&gt;
+&lt;h5 id=&quot;选择合适的collector&quot;&gt;选择合适的Collector&lt;/h5&gt;
+&lt;ol&gt;
+  &lt;li&gt;Serial 串行收集器，单线程收集，运行期间会暂停程序
+&lt;img src=&quot;_images/14876337473845/14876423736313.jpg&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;并行收集器，与串行比较，并行收集使用了多线程，运行期间也会暂停程序，但是效率较高
+&lt;img src=&quot;_images/14876337473845/14876424541571.jpg&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;CMS(concurrent mark-sweep)程序运行期间有单独线程进行标记操作，执行GC的时候，多线程同时开始工作。因为在程序运行期间已经做好了标记处理，所以收集的时候就会更加迅速。效率更高
+&lt;img src=&quot;_images/14876337473845/14876425879158.jpg&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;可以看出，单线程收集器应该是效率最差的，多线程收集器比单线程会有更好的收集效果。
+CMS的好处是拥有最短的程序暂停时间，但是会损耗一定的程序运行效率，应该程序运行期间虚拟机需要一部分线程做对象标记操作。&lt;/p&gt;
+
+&lt;p&gt;#####参数调优：
+-xms -xmx 最大堆内存，初始堆内存
+本地物理内存 = 堆内存(系统预留内存)+永久带内存(64m)+系统保留内存
+最大堆内存和初始堆内存最好一样，这样可以避免堆内存的自动扩展&lt;/p&gt;
+
+&lt;p&gt;增大堆内存，可以减少full GC的发生频率，介绍minor GC的发生频率，增加系统的吞吐量。
+年轻代的大小关系到老年代的大小，老年代太小，容易产生full GC。所以，年轻代不易太大。&lt;/p&gt;
+
+&lt;p&gt;参考文章：http://www.360doc.com/content/12/0113/08/1073512_179088229.shtml&lt;/p&gt;</content><author><name></name></author><summary type="html">内存模型</summary></entry><entry><title type="html">Hello World</title><link href="http://localhost:4000/jekyll/update/2017/01/17/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello World" /><published>2017-01-17T07:00:57+08:00</published><updated>2017-01-17T07:00:57+08:00</updated><id>http://localhost:4000/jekyll/update/2017/01/17/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/01/17/welcome-to-jekyll.html">&lt;p&gt;this is my First Blog!&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;</content><author><name></name></author><summary type="html">this is my First Blog!</summary></entry></feed>

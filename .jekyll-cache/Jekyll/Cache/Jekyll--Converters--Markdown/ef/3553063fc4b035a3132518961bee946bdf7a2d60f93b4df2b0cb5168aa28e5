@@ -1,0 +1,78 @@
+I"S<p>##准备工作</p>
+<ol>
+  <li>申请git账号，新建一个git仓库，仓库的名称命名格式为：
+账号名称.github.io
+比如，我的账号是xinyuan6009，那么我的仓库名称为：
+xinyuan6009.github.io</li>
+  <li>本地安装jekll,安装教程请大家自行搜索。安装好jekll后，执行
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> jekll blog
+</code></pre></div>    </div>
+    <p>就会生成jekll-base的博客工程结构</p>
+  </li>
+  <li>将生成的blog项目上传到仓库中，访问xinyuan6009.github.io就能看到自己的网站了。</li>
+</ol>
+
+<h2 id="自定义主题">自定义主题</h2>
+<p>刚刚新建的博客项目使用的是jekll默认的主题风格，菜单只有about.我们现在要修改网站标题和菜单项。这时我们就要修改一个比较重要的文件_conf.yml</p>
+
+<ol>
+  <li>打开系统默认主题的目录：</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>open <span class="si">$(</span>bundle show minima<span class="si">)</span>
+</code></pre></div></div>
+<ol>
+  <li>参考官方文档拷贝修改配置文件
+    <blockquote>
+      <p>Suppose you want to get rid of the gem-based theme and convert it to a regular theme, where all files are present in your Jekyll site directory, with nothing stored in the theme gem.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<blockquote>
+  <p>To do this, copy the files from the theme gem’s directory into your Jekyll site directory. (For example, copy them to /myblog if you created your Jekyll site at /myblog. See the previous section for details.)</p>
+</blockquote>
+
+<blockquote>
+  <p>Then remove references to the theme gem in Gemfile and configuration. For example, to remove minima:</p>
+</blockquote>
+
+<blockquote>
+  <p>Open Gemfile and remove gem “minima”, “~&gt; 2.0”.
+Open _config.yml and remove theme: minima.
+Now bundle update will no longer get updates for the theme gem.</p>
+</blockquote>
+
+<ol>
+  <li>修改_config.yml文件(如添加了自定义导航)</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#theme: minima</span>
+gems:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
+nav:
+  - text: blog
+    url: /index.html
+  - text: resume
+    url: /resume/index.html
+  - text: contact
+    url: /contact/index.html
+  - text: about
+    url: /about/index.html
+</code></pre></div></div>
+<ol>
+  <li>在项目根目录添加自定义导航菜单对应的配置模板.md 参考系统默认模板about.md,其他菜单的根据需要自行修改</li>
+  <li>修改布局文件中导航菜单的部分逻辑，默认主题的导航文件在_incloud/header.html
+根据我上面的配置，我的布局模板修改如下：</li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"trigger"</span><span class="nt">&gt;</span>
+        
+      <span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+:ET

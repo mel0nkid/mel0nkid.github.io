@@ -1,0 +1,14 @@
+I"�<p>##准备工作</p>
+<ol>
+  <li>申请git账号，新建一个git仓库，仓库的名称命名格式为：
+账号名称.github.io
+比如，我的账号是xinyuan6009，那么我的仓库名称为：
+xinyuan6009.github.io</li>
+  <li>本地安装jekll,安装教程请大家自行搜索。安装好jekll后，执行
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> jekll blog
+</code></pre></div>    </div>
+    <p>就会生成jekll-base的博客工程结构</p>
+  </li>
+  <li>将生成的blog项目上传到仓库中，访问xinyuan6009.github.io就能看到自己的网站了。</li>
+</ol>
+:ET
