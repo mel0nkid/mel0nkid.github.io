@@ -6,7 +6,6 @@ permalink: /resume/
 
 # Personal Information
 
--
  - Zheng Yuanyuan/male/1989 
  - Bachelor of Science(B.S.)/East China Institute of Technology
  - Work seniority：5+(years) 
