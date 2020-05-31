@@ -23,7 +23,7 @@ permalink: /resume/
 
 
 
-#### Thank you for read this, and look forward to cooperation with you
+#### Thank you for read this, and look forward to cooperation with you!
 
 
 
