@@ -1,11 +1,10 @@
 ---
 layout: page
-title: myself
+title: about
 permalink: /resume/
 ---
 
 # Personal Information
-
  - Zheng Yuanyuan/male/1989 
  - Bachelor of Science(B.S.)/East China Institute of Technology
  - Work seniority：5+(years) 
@@ -15,7 +14,6 @@ permalink: /resume/
 ---
 
 # Contact
-
 - Email：iworkvip@gmail.com
 - WeChart：Xinyuan5002
 
